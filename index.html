@@ -122,7 +122,8 @@ a{color:inherit}
 @media (orientation:portrait){
   .quest .txt{left:6%;right:6%;top:4%;bottom:5%;display:flex;flex-direction:column;text-align:center}
   .quest .txt .ds{margin-top:auto}
-  .quest::before{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(transparent,rgba(12,14,30,.78));pointer-events:none}
+  .quest .txt .ds p:last-child{margin-bottom:3.1em}   /* её просьба 22.11: описание на 2 строки выше */
+  .quest::before{content:"";position:absolute;inset:auto 0 0 0;height:38%;background:linear-gradient(transparent,rgba(12,14,30,.78));pointer-events:none}
 }
 .quest::after{content:"";position:absolute;left:0;right:0;top:0;height:6%;background:linear-gradient(#2e0d38,transparent);pointer-events:none}
 @media (orientation:portrait){.quest::after{height:24%;background:linear-gradient(#2e0d38,rgba(21,26,44,.55) 40%,transparent)}}
