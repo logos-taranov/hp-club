@@ -46,7 +46,8 @@ a{color:inherit}
 /* заголовок раздела в стиле её «Что тебя ждёт в январе?» */
 .sh{margin:0 auto;padding:0 12px;overflow-wrap:anywhere;text-align:center;font:700 clamp(28px,4.2vw,50px)/1.15 var(--serif);color:var(--ink);
   text-shadow:0 2px 12px rgba(0,0,0,.45)}
-.sh span{display:inline-flex;align-items:center;gap:.4em;max-width:100%;min-width:0}
+.sh span{display:inline-flex;align-items:center;gap:.4em;max-width:100%;min-width:0;text-wrap:balance}
+@media (max-width:400px){.sh{font-size:clamp(23px,7.2vw,28px)}.sh span{gap:.3em}.sh span::before,.sh span::after{width:clamp(12px,4vw,18px)}}
 .sh span::before,.sh span::after{content:"";flex:0 0 auto;width:clamp(18px,7vw,110px);height:2px;background:linear-gradient(90deg,transparent,var(--gold))}
 .sh span::after{background:linear-gradient(90deg,var(--gold),transparent)}
 .sh-star{display:block;width:min(520px,70%);height:22px;margin:10px auto 0;background:
@@ -107,19 +108,21 @@ a{color:inherit}
 /* 3. афиша квеста */
 .quest{position:relative;overflow:hidden;background:#151a2c}
 .quest picture img{width:100%;height:auto}
-.quest .txt{position:absolute;color:var(--ink)}
+.quest .txt{position:absolute;z-index:2;color:var(--ink)}
 .quest .kick{font:700 13px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
 .quest h2{margin:.35em 0 .3em;font:700 clamp(30px,4.6vw,66px)/1.05 var(--serif);
   background:linear-gradient(180deg,#fff3cf 10%,#f2c86b 55%,#c98a35);-webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 3px 10px rgba(0,0,0,.7))}
+  filter:drop-shadow(0 3px 10px rgba(0,0,0,.7));text-wrap:balance}
 .quest p{margin:0;font-size:clamp(15px,1.5vw,19px);color:#e7dcef;text-shadow:0 2px 8px rgba(0,0,0,.85)}
 @media (orientation:landscape){.quest .txt{left:5%;top:50%;transform:translateY(-50%);width:31%}
   .quest::before{content:"";position:absolute;inset:0 55% 0 0;background:linear-gradient(90deg,rgba(10,12,28,.6),transparent);pointer-events:none}}
 @media (orientation:portrait){
-  .quest .txt{left:6%;right:6%;bottom:5%;text-align:center}
-  .quest::before{content:"";position:absolute;inset:auto 0 0 0;height:42%;background:linear-gradient(transparent,rgba(12,14,30,.78));pointer-events:none}
+  .quest .txt{left:6%;right:6%;top:4%;bottom:5%;display:flex;flex-direction:column;text-align:center}
+  .quest .txt p{margin-top:auto}
+  .quest::before{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(transparent,rgba(12,14,30,.78));pointer-events:none}
 }
 .quest::after{content:"";position:absolute;left:0;right:0;top:0;height:6%;background:linear-gradient(#2e0d38,transparent);pointer-events:none}
+@media (orientation:portrait){.quest::after{height:24%;background:linear-gradient(#2e0d38,rgba(21,26,44,.55) 40%,transparent)}}
 
 /* 4. клуб изнутри: лента снимков с телефона */
 .strip-wrap{position:relative;margin-top:clamp(28px,4vw,48px)}
@@ -195,6 +198,8 @@ a{color:inherit}
 .wa .ic{background:#25d366}.tg .ic{background:#2aabee}.vk .ic{background:#0077ff}
 .ig .ic{background:radial-gradient(circle at 30% 110%,#ffdb73 0 18%,#fd5949 40%,#d6249f 62%,#285aeb 95%)}
 .ml .ic{background:linear-gradient(180deg,#ffe3a1,#d79a42);color:#3a1530}
+.m-br{display:none}
+@media (max-width:760px){.m-br{display:inline}}
 .foot-note{max-width:760px;margin:22px auto 0;text-align:center;font-size:12.5px;color:#a991b4}
 footer{padding:28px 16px 40px;text-align:center;color:#a991b4;font-size:14px;border-top:1px solid rgba(242,200,107,.15)}
 footer a{color:var(--gold)}
@@ -347,9 +352,9 @@ details p{margin:8px 0 0}
 </section>
 
 <section class="sec" id="contact" aria-labelledby="ct-h" style="padding-top:0">
-  <h2 class="sh" id="ct-h"><span>Присоединиться к клубу</span></h2>
+  <h2 class="sh" id="ct-h"><span>Присоединиться к&nbsp;клубу</span></h2>
   <i class="sh-star" aria-hidden="true"></i>
-  <p class="lead">Напиши мне, где тебе удобно: отвечу, расскажу подробности и помогу с записью.</p>
+  <p class="lead">Напиши мне, где тебе удобно: отвечу,<br class="m-br"> расскажу подробности и помогу с записью.</p>
   <div class="contacts">
     <a class="ct wa" data-wa href="https://wa.me/" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg></span><b>WhatsApp</b></a>
     <a class="ct tg" href="https://t.me/maria_ataseven" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.5zM8.7 13.9l9.4-5.9c.4-.3.8-.1.5.2l-7.6 6.9-.3 3.2z"/></svg></span><b>Telegram</b></a>
