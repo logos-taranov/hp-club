@@ -89,24 +89,22 @@ a{color:inherit}
 .fc .in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .fc[aria-pressed="true"] .in{transform:rotateY(180deg)}
 @media (hover:hover){.fc:hover .in{transform:translateY(-4px)}.fc[aria-pressed="true"]:hover .in{transform:translateY(-4px) rotateY(180deg)}}
-.fc{perspective:1200px}
-/* телефон: перевёрнутая карточка чуть приподнимается и растёт, чтобы текст оборота читался крупнее */
-@media (max-width:760px){
-  .fc{transition:transform .45s cubic-bezier(.2,.7,.2,1)}
-  .fc:nth-child(odd){transform-origin:left center}.fc:nth-child(even){transform-origin:right center}
-  .fc[aria-pressed="true"]{transform:scale(1.17);z-index:2}
-}
+.fc{perspective:1200px;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+/* перевёрнутая карточка растёт, чтобы текст оборота читался: на телефоне на всю ширину блока, на компьютере насколько нужно длинному тексту.
+   Во сколько раз и от какого угла — считает fitBacks() (--zs и transform-origin), карточка не выходит за блок */
+.fc[aria-pressed="true"]{transform:scale(var(--zs,1));z-index:3}
 .fc .f,.fc .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .fc .f img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 14px rgba(0,0,0,.5))}
 .fc .hint{position:absolute;right:3%;top:3%;width:clamp(24px,2.6vw,32px);height:clamp(24px,2.6vw,32px);border-radius:50%;display:grid;place-items:center;
   background:rgba(42,13,53,.8);border:1px solid var(--line);color:var(--gold);font-size:clamp(13px,1.4vw,17px)}
 .fc .b{transform:rotateY(180deg);background:url(img/card_back.webp) center/100% 100% no-repeat;filter:drop-shadow(0 8px 14px rgba(0,0,0,.5));color:#3a1a2c}
-@media (min-width:761px) and (min-resolution:1.5dppx){.fc .b{background-image:url(img/card_back_2x.webp)}}
+@media (min-resolution:1.5dppx){.fc .b{background-image:url(img/card_back_2x.webp)}}
 .fc .bt{position:absolute;inset:0;overflow:hidden;font-size:12px;line-height:1.36;text-align:center}
 .fc .bt .shl{float:left;width:50%;height:100%;shape-outside:polygon(0 0,100% 0,100% 13%,20% 44%,49% 91%,49% 100%,0 100%)}
 .fc .bt .shr{float:right;width:50%;height:100%;shape-outside:polygon(100% 0,0 0,0 13%,80% 44%,51% 91%,51% 100%,100% 100%)}
 .fc .b h3{margin:0 0 .35em;padding-top:.2em;font:700 1.12em/1.18 var(--serif);color:#4a1640}
 .fc .b p{margin:0}
+.nw{white-space:nowrap}
 .cards-note{text-align:center;margin-top:16px;color:var(--muted);font-size:14px}
 
 /* 3. афиша квеста */
@@ -118,11 +116,12 @@ a{color:inherit}
   background:linear-gradient(180deg,#fff3cf 10%,#f2c86b 55%,#c98a35);-webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 3px 10px rgba(0,0,0,.7));text-wrap:balance}
 .quest p{margin:0;font-size:clamp(15px,1.5vw,19px);color:#e7dcef;text-shadow:0 2px 8px rgba(0,0,0,.85)}
+.quest p+p{margin-top:.6em}
 @media (orientation:landscape){.quest .txt{left:5%;top:50%;transform:translateY(-50%);width:31%}
   .quest::before{content:"";position:absolute;inset:0 55% 0 0;background:linear-gradient(90deg,rgba(10,12,28,.6),transparent);pointer-events:none}}
 @media (orientation:portrait){
   .quest .txt{left:6%;right:6%;top:4%;bottom:5%;display:flex;flex-direction:column;text-align:center}
-  .quest .txt p{margin-top:auto}
+  .quest .txt .ds{margin-top:auto}
   .quest::before{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(transparent,rgba(12,14,30,.78));pointer-events:none}
 }
 .quest::after{content:"";position:absolute;left:0;right:0;top:0;height:6%;background:linear-gradient(#2e0d38,transparent);pointer-events:none}
@@ -263,15 +262,15 @@ details p{margin:8px 0 0}
     </span></div>
     <div class="fc" role="button" tabindex="0" aria-pressed="false" data-ev="flip" data-d="4"><span class="in">
       <span class="f"><img src="img/card_4.webp" srcset="img/card_4.webp 640w, img/card_4_2x.webp 1000w" sizes="(max-width:760px) 50vw, 320px" width="640" height="640" loading="lazy" alt="Магические игры"><span class="hint" aria-hidden="true">↻</span></span>
-      <span class="b"><span class="bt"><span class="shl"></span><span class="shr"></span><h3>Магические игры</h3><p>Плюй-камни и другие игры на знание турецкого: отвечай на вопросы и приноси очки своему факультету.</p></span></span>
+      <span class="b"><span class="bt"><span class="shl"></span><span class="shr"></span><h3>Магические игры</h3><p>Среди занятий в&nbsp;клубе есть и&nbsp;магические игры. Сыграйте в&nbsp;<span class="nw">плюй-камни</span>, закрепите новую турецкую лексику и&nbsp;поборитесь за&nbsp;звание чемпиона!</p></span></span>
     </span></div>
     <div class="fc" role="button" tabindex="0" aria-pressed="false" data-ev="flip" data-d="5"><span class="in">
       <span class="f"><img src="img/card_5.webp" srcset="img/card_5.webp 640w, img/card_5_2x.webp 1000w" sizes="(max-width:760px) 50vw, 320px" width="640" height="640" loading="lazy" alt="Достижения и призы"><span class="hint" aria-hidden="true">↻</span></span>
-      <span class="b"><span class="bt"><span class="shl"></span><span class="shr"></span><h3>Достижения и призы</h3><p>Особые достижения за мастерство, упорство и не только. Все они появляются в твоём личном кабинете.</p></span></span>
+      <span class="b"><span class="bt"><span class="shl"></span><span class="shr"></span><h3>Достижения и призы</h3><p>Выполняйте задания и&nbsp;открывайте достижения в&nbsp;личном кабинете. Самого упорного, смелого и&nbsp;ловкого волшебника нашего клуба ждёт главный приз&nbsp;— большой набор подарков из&nbsp;мира Гарри Поттера!</p></span></span>
     </span></div>
     <div class="fc" role="button" tabindex="0" aria-pressed="false" data-ev="flip" data-d="6"><span class="in">
       <span class="f"><img src="img/card_6.webp" srcset="img/card_6.webp 640w, img/card_6_2x.webp 1000w" sizes="(max-width:760px) 50vw, 320px" width="640" height="640" loading="lazy" alt="Первый фильм на турецком"><span class="hint" aria-hidden="true">↻</span></span>
-      <span class="b"><span class="bt"><span class="shl"></span><span class="shr"></span><h3>Первый фильм на турецком</h3><p>Смотрим первый фильм о Гарри Поттере на турецком языке.</p></span></span>
+      <span class="b"><span class="bt"><span class="shl"></span><span class="shr"></span><h3>Первый фильм на турецком</h3><p>Вместе смотрим «Гарри Поттер и&nbsp;философский камень» на&nbsp;турецком&nbsp;— каждый день по&nbsp;небольшому отрывку. К&nbsp;фильму прилагается глоссарий, а&nbsp;сложные моменты разбираем в&nbsp;<span class="nw">мини-подкастах</span>. Любые вопросы всегда можно обсудить в&nbsp;нашем закрытом чате <span class="nw">«Выручай-комната».</span></p></span></span>
     </span></div>
   </div>
   <p class="cards-note">Нажми на карточку, чтобы перевернуть</p>
@@ -285,7 +284,7 @@ details p{margin:8px 0 0}
   <div class="txt">
     <div class="kick">Квест клуба</div>
     <h2 id="quest-h">Сириус Блэк и&nbsp;Зеркало Судьбы</h2>
-    <p>Тайна, которую предстоит разгадать за месяц. Каждый этап открывает новую главу истории и новое задание на турецком.</p>
+    <div class="ds"><p>Хогвартс, 1975&nbsp;год. Случайно подслушанный разговор заставляет юного Сириуса Блэка задуматься: какую тайну хранит его семья?</p><p>Квест&nbsp;— это интерактивная история. Каждый этап открывает новую главу и&nbsp;новое задание на&nbsp;турецком: ты будешь искать улики и&nbsp;решать головоломки, чтобы узнать, что случится дальше.</p></div>
   </div>
 </section>
 
@@ -419,20 +418,40 @@ details p{margin:8px 0 0}
   var wa = 'https://wa.me/' + ['90','505','023','61','26'].join('') + '?text=' + encodeURIComponent('Здравствуйте, Мария! Хочу присоединиться к клубу по Гарри Поттеру 🪄');
   document.querySelectorAll('[data-wa]').forEach(function(a){ a.href = wa; });
 
-  // карточки: нажатие переворачивает
-  document.querySelectorAll('.fc').forEach(function(c){
-    function flip(){ c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); }
+  // карточки: нажатие переворачивает; открыта одна за раз, нажатие мимо карточки или Esc закрывает
+  var grid = document.querySelector('.cards'), cards = [].slice.call(grid.querySelectorAll('.fc'));
+  function closeAll(except){ cards.forEach(function(o){ if (o !== except) o.setAttribute('aria-pressed', 'false'); }); }
+  cards.forEach(function(c){
+    function flip(){ var open = c.getAttribute('aria-pressed') !== 'true'; closeAll(c); c.setAttribute('aria-pressed', open ? 'true' : 'false'); }
     c.addEventListener('click', flip);
     c.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
   });
+  // pointerdown, а не click: на iPhone нажатие на пустое место не даёт click
+  document.addEventListener('pointerdown', function(e){ if (!(e.target.closest && e.target.closest('.fc'))) closeAll(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeAll(); });
 
-  // оборот карточки: шрифт подбирается под размер карточки, текст не вылезает за пятиугольник
+  // оборот карточки: шрифт подбирается под размер карточки, текст не вылезает за пятиугольник;
+  // перевёрнутая карточка увеличивается (--zs), чтобы на экране текст был не мельче 14–15 px
+  function fitOne(bt, max){
+    var fs = max, last = bt.lastElementChild;
+    do { bt.style.fontSize = fs.toFixed(2) + 'px'; fs -= 0.25; }
+    while (fs > 6 && last.offsetTop + last.offsetHeight > bt.clientHeight * 0.9);
+    return parseFloat(bt.style.fontSize);
+  }
   function fitBacks(){
-    document.querySelectorAll('.fc .bt').forEach(function(bt){
-      var w = bt.clientWidth; if (!w) return;
-      var fs = Math.min(17, w * 0.072), last = bt.lastElementChild;
-      do { bt.style.fontSize = fs.toFixed(2) + 'px'; fs -= 0.25; }
-      while (fs > 8 && last.offsetTop + last.offsetHeight > bt.clientHeight * 0.9);
+    var w = cards[0].clientWidth; if (!w) return;
+    var phone = matchMedia('(max-width:760px)').matches, z;
+    if (phone) z = grid.clientWidth / w;
+    else { z = 1; cards.forEach(function(c){ z = Math.max(z, 15 / fitOne(c.querySelector('.bt'), Math.min(17, w * 0.072))); }); z = Math.min(z, 1.4); }
+    var cap = Math.min(w * 0.072, (phone ? 16 : 18) / z);
+    var xs = [], ys = [];
+    cards.forEach(function(c){ if (xs.indexOf(c.offsetLeft) < 0) xs.push(c.offsetLeft); if (ys.indexOf(c.offsetTop) < 0) ys.push(c.offsetTop); });
+    xs.sort(function(a, b){ return a - b; }); ys.sort(function(a, b){ return a - b; });
+    function side(v, list, lo, hi){ var i = list.indexOf(v); return i === 0 ? lo : i === list.length - 1 ? hi : 'center'; }
+    cards.forEach(function(c){
+      fitOne(c.querySelector('.bt'), cap);
+      c.style.setProperty('--zs', z.toFixed(3));
+      c.style.transformOrigin = side(c.offsetLeft, xs, 'left', 'right') + ' ' + side(c.offsetTop, ys, 'top', 'bottom');
     });
   }
   fitBacks(); addEventListener('resize', fitBacks);
