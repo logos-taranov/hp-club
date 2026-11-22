@@ -154,10 +154,22 @@ a{color:inherit}
 /* 6. отзывы */
 .rev{flex:0 0 auto;width:min(360px,calc(100vw - 64px));scroll-snap-align:center;margin:0;padding:26px 24px;border-radius:16px;
   background:linear-gradient(160deg,#f3e3c0,#e2c893);color:#3a1a2c;box-shadow:0 12px 28px rgba(0,0,0,.4);display:flex;flex-direction:column;gap:14px}
-.rev blockquote{margin:0;font:400 italic 17px/1.5 var(--serif)}
-.rev figcaption{margin-top:auto;font-weight:700;color:#5a1d4e}
-.rev.ph-rev blockquote{color:#7a5a6a}
+.rev{position:relative;padding-top:30px}
+.rev::before{content:"“";position:absolute;right:18px;top:-6px;font:700 96px/1 var(--serif);color:rgba(90,29,78,.16);pointer-events:none}
+.rev figcaption{order:-1;font:700 20px/1.2 var(--serif);color:#5a1d4e}
+.rev figcaption::before{content:"✦ ";color:#b07a2a}
+.rev blockquote{margin:0;font:400 italic 16.5px/1.5 var(--serif);max-height:calc(1.5em * 10);overflow:hidden}
+.rev blockquote p{margin:0 0 .55em}
+.rev blockquote p:last-child{margin-bottom:0}
+.rev.long blockquote{-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+.rev-more{margin-top:auto;align-self:flex-start;padding:9px 16px;border:1px solid rgba(90,29,78,.45);border-radius:999px;background:rgba(255,255,255,.35);
+  color:#5a1d4e;font:700 14px/1 var(--sans);cursor:pointer}
+.rev-more::after{content:" →"}
+@media (max-width:400px){.rev{padding:26px 18px 20px}.rev blockquote{font-size:15.5px}}
 @media (min-width:1100px){.rev{width:calc((1160px - 48px)/3)}}
+#rev-dlg .who{margin:0 40px 14px 0;font:700 24px/1.2 var(--serif);color:var(--gold)}
+#rev-dlg blockquote{margin:0;font:400 italic 17px/1.55 var(--serif)}
+#rev-dlg blockquote p{color:var(--ink)}
 
 /* 7. стоимость и запись */
 .price{width:min(720px,100% - 24px);margin:clamp(28px,4vw,48px) auto 0;padding:clamp(20px,4vw,44px) clamp(14px,4vw,44px);border-radius:22px;text-align:center;
@@ -316,11 +328,16 @@ details p{margin:8px 0 0}
   <div class="strip-wrap">
     <button class="arr l" type="button" aria-label="Назад" data-dir="-1">‹</button>
     <div class="strip" id="revs">
-      <figure class="rev ph-rev"><blockquote>Здесь будет отзыв участника клуба.</blockquote><figcaption>Имя участника</figcaption></figure>
-      <figure class="rev ph-rev"><blockquote>Здесь будет отзыв участника клуба.</blockquote><figcaption>Имя участника</figcaption></figure>
-      <figure class="rev ph-rev"><blockquote>Здесь будет отзыв участника клуба.</blockquote><figcaption>Имя участника</figcaption></figure>
-      <figure class="rev ph-rev"><blockquote>Здесь будет отзыв участника клуба.</blockquote><figcaption>Имя участника</figcaption></figure>
-      <figure class="rev ph-rev"><blockquote>Здесь будет отзыв участника клуба.</blockquote><figcaption>Имя участника</figcaption></figure>
+      <figure class="rev" data-rev="0"><figcaption>Дарина</figcaption><blockquote><p>Чистое очарование — это когда клуб становится целым приключением! 💫</p><p>Я особенно ждала этот клуб, ведь он был по моей любимой Вселенной ГП. И какое же это было удовольствие: активности, ачивки, карточки, живой чат, борьба за Кубок факультета — хотелось успеть всё и сразу!</p><p>Квест, глоссарий, главы и невероятно бережное отношение к оригиналу сделали этот опыт по-настоящему волшебным.</p><p>Мария, спасибо за такой магический клуб ✨</p></blockquote><button class="rev-more" type="button" hidden>Читать полностью</button></figure>
+      <figure class="rev" data-rev="1"><figcaption>Алена</figcaption><blockquote><p>Книжный клуб это не только удовольствие, но и большая польза! Во-первых, приятно, что есть много помощи и подсказок при чтении, во-вторых, затягивает, хочется узнать, что будет дальше, в-третьих, вспоминаешь знакомые слова плюс учишь новые. За месяц книжного клуба у меня развилась зависимость читать на турецком языке. А это значит хочется продолжать учить язык!</p><p>Отдельная любовь это задачки и задания на карточки. Хотелось собрать все и выиграть битву факультетов!</p><p>Ну а квест это «прямо в сердечко» 🥹 Было очень интересно, увлекательно, волнительно и при этом познавательно! Даже со своим начальным уровнем я дошла до финала, хотя все задания надо было выполнять на турецком и иногда было действительно сложно! Большое спасибо, Мария, за такое невероятное волшебное приключение! Уже жду следующий квест 🥹</p></blockquote><button class="rev-more" type="button" hidden>Читать полностью</button></figure>
+      <figure class="rev" data-rev="2"><figcaption>Катя</figcaption><blockquote><p>Мария, доброе утро!!! Это какая-то детская радость от победы))) Казалось бы, а настроение-то улучшилось!</p><p>Это было чудесное время, чудесные просто суперские задания, эфиры. Спасибо просто огромнейшее. Прямо вернулось желание заниматься турецким снова.)))</p></blockquote><button class="rev-more" type="button" hidden>Читать полностью</button></figure>
+      <figure class="rev" data-rev="3"><figcaption>Надежда</figcaption><blockquote><p>Хотелось бы выразить большую благодарность нашему идейному вдохновителю, Марии, за снова предоставленную возможность поучаствовать в клубе, уже в 4-й раз! К Вам хочется возвращаться снова и снова, а это говорит о многом!</p><p>Это огромный и кропотливый труд, помноженный на бессонные ночи. Задания были безумно интересными, а в клубе как всегда царит дух дружбы, взаимной поддержки, уважения и соперничества!</p><p>All in all, моим восторгам и восхищению нет предела!</p><p>P.S. Спасибо моему факультету за стремительность и взаимовыручку! А соперникам спасибо за то, что мотивировали и придавали ускорения 🤣🤣🤣</p></blockquote><button class="rev-more" type="button" hidden>Читать полностью</button></figure>
+      <figure class="rev" data-rev="4"><figcaption>Георгий</figcaption><blockquote><p>Мария, конец этого клуба — это как конец хорошей книги. Читал бы еще...</p><p>Целый месяц эта сказка длилась и — как сказали выше — была хорошим способом сбежать на какое-то время от реальности. Здорово, что, не замечая этого, мы еще и занимались турецким языком, что в конечном счёте эту реальность улучшало.</p><p>Благодарность всем истинным слизеринцам, а также и нашим достойным соперникам. Надеюсь, мы с вами за кубок ещё поборёмся и… Шалость удалась!</p></blockquote><button class="rev-more" type="button" hidden>Читать полностью</button></figure>
+      <figure class="rev" data-rev="5"><figcaption>Юля</figcaption><blockquote><p>Я безусловно присоединяюсь ко всему выше сказанному, и хочу добавить пару слов. Мария, все, что Вы делаете, делается с 200% отдачей. Поверьте, мне есть с чем сравнить — за 2 года пройдено достаточное количество мастер-классов, интенсивов и всевозможных тренингов по турецкому. К Вам хочется возвращаться, потому что есть уверенность, что любой Ваш проект заранее «обречен» на успех!</p><p>Преподаватель, настолько горящий своим делом, редкость, к сожалению.. но нам с однокурсниками (или с одноклубниками) повезло — почти месяц пролетел незаметно. Было и весело, и познавательно, и полезно, и азартно. Огромное спасибо за такую возможность. Ждем следующий проект))</p></blockquote><button class="rev-more" type="button" hidden>Читать полностью</button></figure>
+      <figure class="rev" data-rev="6"><figcaption>Наталья</figcaption><blockquote><p>Я тоже хочу выразить своё признание Марии — моей первой учительнице турецкого! То, что происходило в этом клубе — просто невероятно! И, правда, невероятное волшебство! В клубе за годы произошли огромные изменения!</p><p>Спасибо за такое волшебное погружение в мир волшебного турецкого. Вы не только очень хороший преподаватель, но и талантливый и интересный человек!</p><p>Желаю клубу быть!!! С большим уважением 🌺</p></blockquote><button class="rev-more" type="button" hidden>Читать полностью</button></figure>
+      <figure class="rev" data-rev="7"><figcaption>Наталья</figcaption><blockquote><p>Просто волшебство какое-то! Особенно во время воскресных эфиров происходит настоящая магия. Очень нравится атмосфера единства с факультетом, адаптированные главы заставили меня поверить, что я могу понимать текст на турецком, ну и конечно квест! Такой азарт, такой азарт, спасибо за возможность в этом участвовать, уже жду следующего книжного клуба!!</p></blockquote><button class="rev-more" type="button" hidden>Читать полностью</button></figure>
+      <figure class="rev" data-rev="8"><figcaption>Оксана</figcaption><blockquote><p>Мария, Вы настоящая волшебница!</p><p>Хочу от всей души поблагодарить Вас за невероятное приключение, которое Вы нам подарили! Спасибо за тёплую и вдохновляющую атмосферу, супер-продуманный формат!</p><p>Ваш клуб стал для меня настоящим спасением от повседневной рутины. На пару часов я забывала о рабочих заботах и проблемах, погружаясь в мир магии, дружбы и захватывающих загадок!</p><p>Благодарю Вас за труд, за внимание к каждому участнику и за ту искру волшебства, которую Вы вкладываете в каждую онлайн-встречу.</p><p>Спасибо моим «факультетским одноклассникам» из Когтеврана (Ревенкло) за дух единства. Вы такие классные! Теперь мы не просто участники клуба, а настоящая команда!</p><p>Очень надеюсь, что в следующем году я снова смогу поучаствовать в такой потрясающей волшебной игре!</p></blockquote><button class="rev-more" type="button" hidden>Читать полностью</button></figure>
+      <figure class="rev" data-rev="9"><figcaption>Ольга</figcaption><blockquote><p>Мария, честное слово — я впечатлена! Это реально очень и очень качественно сделанная игра. Тексты продуманы и логичны. Получаю удовольствие!</p><p>Искренне благодарю</p></blockquote><button class="rev-more" type="button" hidden>Читать полностью</button></figure>
     </div>
     <button class="arr r" type="button" aria-label="Вперёд" data-dir="1">›</button>
   </div>
@@ -376,6 +393,12 @@ details p{margin:8px 0 0}
   <div class="acts"><a class="btn gold" href="#contact" data-close>Написать Марии</a></div>
 </div></dialog>
 
+<dialog id="rev-dlg" aria-label="Отзыв участника клуба"><div class="dl">
+  <button class="x" type="button" aria-label="Закрыть" data-close>✕</button>
+  <p class="who" id="rev-who"></p>
+  <blockquote id="rev-txt"></blockquote>
+</div></dialog>
+
 <dialog id="faq" aria-labelledby="faq-h"><div class="dl">
   <button class="x" type="button" aria-label="Закрыть" data-close>✕</button>
   <h3 id="faq-h">Вопросы и ответы</h3>
@@ -404,6 +427,26 @@ details p{margin:8px 0 0}
     var s = w.querySelector('.strip');
     w.querySelectorAll('.arr').forEach(function(b){
       b.addEventListener('click', function(){ s.scrollBy({left: (+b.dataset.dir) * s.clientWidth * 0.8, behavior: 'smooth'}); });
+    });
+  });
+
+  // отзывы: длинные обрезаны в карточке, целиком — в окне
+  var rd = document.getElementById('rev-dlg');
+  function markLong(){
+    document.querySelectorAll('.rev').forEach(function(f){
+      var q = f.querySelector('blockquote'), long = q.scrollHeight > q.clientHeight + 2;
+      f.classList.toggle('long', long); f.querySelector('.rev-more').hidden = !long;
+    });
+  }
+  markLong(); addEventListener('resize', markLong);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(markLong);
+  document.querySelectorAll('.rev-more').forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.closest('.rev');
+      document.getElementById('rev-who').textContent = f.querySelector('figcaption').textContent;
+      document.getElementById('rev-txt').innerHTML = f.querySelector('blockquote').innerHTML;
+      rd.showModal ? rd.showModal() : rd.setAttribute('open', '');
+      rd.querySelector('.dl').scrollTop = 0;
     });
   });
 
